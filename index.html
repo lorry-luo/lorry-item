@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>输出表单内容</title>
+    <script src="../../js/jquery-1.12.3.js"></script>
+    <script>
+        $(function(){
+            /*
+                输出表单内容
+                    1.给提交按钮绑定点击事件
+                        得到输入的内容
+                    2.把内容输出到.msg
+             */
+
+			//click JQ的方法 绑定一个点击事件
+			
+			//1获取表单的内容 
+			//2拼成一个字符串
+		    //3把字符串赋值给 $('.msg')某个方法
+			$('button:submit').click(function(){
+				
+				var user=$('#username').val();			 
+				var user= $('#username').val();
+				var nike=$('#nickname').val();
+				var pass=$(':password').val();
+				var surepass=$('#passwordchecked').val();
+				var sex= $('option:selected').html();
+                 
+               var like=$(':checkbox:checked')
+               console.log(like)
+               var like11=''
+                for(var i=0;i<like.length;i++){
+                	like11 +=like[i].nextSibling.nodeValue  //找到对应的文本值         	
+                }      
+                //转换成js对象
+	            
+	           
+               
+	            
+	              
+				var str = '<p>姓名：<strong>'+user+'</strong></p>';
+				str +='<p>姓名：<strong>'+ nike +'</strong></p>'
+				str +='<p>密码：<strong>'+ pass+'</strong></p>'
+				str +='<p>确认密码：<strong>'+ surepass+'</strong></p>'
+				str +='<p>性别：<strong>'+ sex+'</strong></p>'
+				str +='<p>性别：<strong>'+ like11+'</strong></p>'
+			    if($(':radio:checked').length>0){
+                	  str +="<p><strong>"+ $('[for=""]').last().text() +":</strong>"+ $(':radio:checked')[0].nextSibling.nodeValue +"</p>" ; //选择对象的第0个
+                }
+               
+				
+
+				$('.msg').html(str);
+			
+				//屏蔽默认事件
+				return false;
+			})
+
+        });
+    </script>
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="username">用户名</label>
+            <input type="text" id="username" placeholder="请输入用户名">
+        </p>
+        <p>
+            <label for="nickname">昵称</label>
+            <input type="text" id="nickname" placeholder="输入一个昵称">
+        </p>
+        <p>
+            <label for="password">密码</label>
+            <input type="password" id="password">
+        </p>
+        <p>
+            <label for="passwordchecked">确认密码</label>
+            <input type="password" id="passwordchecked">
+        </p>
+        <p>
+            <label for="sex">性别</label>
+            <select id="sex">
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select>
+        </p>
+        <p>
+            <label for="">爱好</label>
+            <label>
+                <input type="checkbox" value="1">旅游</label>
+            <label>
+                <input type="checkbox" value="2">睡觉</label>
+            <label>
+                <input type="checkbox" value="3">上网</label>
+            <label>
+                <input type="checkbox" value="4">看电影</label>
+        </p>
+        <p>
+            <label for="">是否已婚</label>
+            <label>
+                <input type="radio" value="1" name="married">是</label>
+            <label>
+                <input type="radio" value="0" name="married">否</label>
+            <label>
+                <input type="radio" value="2" name="married">离异</label>
+        </p>
+        <div class="center">
+            <input type="hidden" value="注册表单">
+            <input type="button" value="返回" />
+            <button type="submit">提交</button>
+            <button type="reset">重置</button>
+        </div>
+    </form>
+    <div class="msg"></div>
+</body>
+
+</html>
